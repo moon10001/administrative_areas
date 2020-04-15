@@ -1,3 +1,5 @@
+error_log
+composer.phar
 /vendor
 /.idea
 Homestead.json
