@@ -90,7 +90,7 @@ class AdministrativeAreaController extends Controller
     $keyword = $request->keyword;
     $results = DB::table('sub_districts')->
       select(['sub_districts.id', 'sub_districts.name'])->
-      join('districts', 'districts_id', '=', 'districts.id')->
+      join('districts', 'sub_districts.districts_id', '=', 'districts.id')->
       join('cities', 'cities.id', '=', 'districts.cities_id');
 
     if(isset($id)) {
@@ -99,7 +99,7 @@ class AdministrativeAreaController extends Controller
     }
 
     if(isset($districtId)) {
-      $results = $results->whereDistrictsId($provinceId);
+      $results = $results->whereDistrictsId($districtId);
     } else if(isset($cityId)) {
       $results = $results->where('districts.cities_id', '=', $cityId);
     } else if(isset($provinceId)) {
